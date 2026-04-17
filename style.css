@@ -380,6 +380,42 @@ body {
     50% { transform: translateY(-20px) translateX(10px); }
 }
 
+/* Side Decorations */
+.side-decoration {
+    position: fixed;
+    z-index: 5;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    animation: floatingDecor 6s ease-in-out infinite;
+    filter: drop-shadow(0 15px 25px rgba(0,0,0,0.08));
+}
+
+.decor-dress {
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 250px;
+    opacity: 0.9;
+}
+
+@keyframes floatingDecor {
+    0%, 100% { transform: translateY(-50%) translateX(0) rotate(0deg); }
+    50% { transform: translateY(calc(-50% - 15px)) translateX(-5px) rotate(2deg); }
+}
+
+@media (max-width: 1000px) {
+    .decor-dress {
+        width: 180px;
+        right: 2%;
+    }
+}
+
+@media (max-width: 768px) {
+    .side-decoration {
+        display: none; /* Hide on mobile so it doesn't overlap the card */
+    }
+}
+
 /* Tooltip */
 .tooltip-container {
     position: relative;
