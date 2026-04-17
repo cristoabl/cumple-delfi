@@ -3,26 +3,47 @@ const musicToggle = document.getElementById('musicToggle');
 const bgMusic = document.getElementById('bgMusic');
 
 if (musicToggle && bgMusic) {
-    // Optionally try to auto-play but mostly browsers block this, so the user has to click
-    musicToggle.addEventListener('click', () => {
+    // Por defecto, la música debe sonar ('true'), a menos que el invitado lo haya apagado antes.
+    let shouldPlay = localStorage.getItem('music_playing');
+    if (shouldPlay === null) shouldPlay = 'true';
+
+    const tryPlayMusic = () => {
+        if (shouldPlay === 'false') return; 
+        
+        if (bgMusic.paused) {
+            bgMusic.play()
+                .then(() => {
+                    musicToggle.classList.add('playing');
+                })
+                .catch(() => {
+                    // Los navegadores bloquean el autoplay silencioso.
+                    // Será capturado por el event listener del click o touchstart más abajo.
+                });
+        }
+    };
+
+    // Intentar arrancar ni bien se carga (casi siempre es bloqueado)
+    tryPlayMusic();
+
+    // Arrancar mágicamente al primer toque o click en cualquier parte de la pantalla
+    document.body.addEventListener('click', tryPlayMusic, { once: true });
+    document.body.addEventListener('touchstart', tryPlayMusic, { once: true });
+
+    musicToggle.addEventListener('click', (e) => {
+        e.stopPropagation(); // Evitar activar los eventos globales al mismo tiempo
+        
         if (bgMusic.paused) {
             bgMusic.play();
             musicToggle.classList.add('playing');
             localStorage.setItem('music_playing', 'true');
+            shouldPlay = 'true';
         } else {
             bgMusic.pause();
             musicToggle.classList.remove('playing');
             localStorage.setItem('music_playing', 'false');
+            shouldPlay = 'false';
         }
     });
-
-    // Start playing if it was playing previously or if user interacts
-    document.body.addEventListener('click', () => {
-        if (localStorage.getItem('music_playing') === 'true' && bgMusic.paused) {
-            bgMusic.play();
-            musicToggle.classList.add('playing');
-        }
-    }, { once: true });
 }
 
 // Set the date we're counting down to (May 9, 2026 13:30:00 - Argentina Time)
