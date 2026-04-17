@@ -130,11 +130,58 @@ body {
     border-radius: 15px;
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.8);
+    position: relative;
+    overflow: visible;
 }
 
 .detail-item:hover {
     background: rgba(255, 255, 255, 0.9);
     transform: scale(1.02);
+}
+
+/* Hover Characters Animation */
+.hover-character {
+    position: absolute;
+    height: 80px;
+    width: auto;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 20;
+    mix-blend-mode: multiply; /* Helps blend white background of icon */
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+}
+
+.rabbit {
+    right: -20px;
+    top: -20px;
+    transform: translateX(20px) translateY(10px) rotate(15deg);
+}
+.detail-item:hover .rabbit {
+    opacity: 1;
+    transform: translateX(0) translateY(0) rotate(-5deg);
+}
+
+.cat {
+    right: -10px;
+    top: -40px;
+    transform: translateY(20px) scale(0.6);
+    height: 90px;
+}
+.detail-item:hover .cat {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.hatter {
+    left: -30px;
+    top: -30px;
+    transform: translateY(15px) rotate(-15deg);
+    height: 70px;
+}
+.detail-item:hover .hatter {
+    opacity: 1;
+    transform: translateY(0) rotate(5deg);
 }
 
 .icon {
@@ -211,7 +258,7 @@ body {
 }
 
 .rsvp-btn {
-    margin-top: 35px;
+    margin-top: 20px;
     background: linear-gradient(135deg, #E5A9AC, #d4af37);
     color: white;
     border: none;
@@ -229,6 +276,89 @@ body {
 .rsvp-btn:hover {
     transform: translateY(-3px) scale(1.02);
     box-shadow: 0 12px 25px rgba(229, 169, 172, 0.6);
+}
+
+.btn-secondary {
+    background: white;
+    color: var(--accent-color);
+    border: 2px solid var(--primary-color);
+    margin-bottom: 25px;
+}
+
+/* RSVP Section Styles */
+.rsvp-section {
+    margin-top: 35px;
+    padding-top: 25px;
+    border-top: 1px dashed rgba(229, 169, 172, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rsvp-section h3 {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+}
+
+.rsvp-section p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.rsvp-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rsvp-form input {
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(229, 169, 172, 0.5);
+    background: rgba(255, 255, 255, 0.8);
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.rsvp-form input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+}
+
+.rsvp-form .rsvp-btn {
+    margin-top: 5px;
+}
+
+.message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    width: 100%;
+    text-align: center;
+}
+
+.message.success {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+}
+
+.message.error {
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+}
+
+.hidden {
+    display: none !important;
 }
 
 /* Animations */
