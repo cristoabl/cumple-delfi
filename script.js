@@ -94,8 +94,26 @@ if (window.supabase) {
         msgDiv.className = "message hidden";
 
         // Preparar el nombre para guardar (normalizado)
-        // Guardamos el nombre as-is pero la base de datos se encargará de rechazar si es UNIQUE
         try {
+            // 1. Obtener lista actual para verificar apodos o similitudes (ej: Gabi vs Gabriela)
+            const { data: invitadosActuales, error: fetchError } = await supabaseClient
+                .from('invitados')
+                .select('nombre_completo');
+                
+            if (!fetchError && invitadosActuales) {
+                const isDuplicate = invitadosActuales.some(invitado => 
+                    isNameSimilar(invitado.nombre_completo, inputName)
+                );
+
+                if (isDuplicate) {
+                    showMessage(`¡Hola ${inputName}! Parece que tu asistencia (o la de alguien con tu mismo nombre/apodo) ya estaba confirmada en la lista mágica. ✨`, 'error');
+                    btn.disabled = false;
+                    btn.innerText = "¡Asistiré!";
+                    return; // Detener ejecución
+                }
+            }
+
+            // 2. Si no hay duplicados similares, intentar insertar
             const { data, error } = await supabaseClient
                 .from('invitados')
                 .insert([
@@ -129,6 +147,42 @@ function showMessage(text, type) {
     const msgDiv = document.getElementById('rsvp-message');
     msgDiv.innerText = text;
     msgDiv.className = `message ${type}`;
+}
+
+// Lógica inteligente para detectar apodos (Gabi Dodelson == Gabriela Dodelson)
+function isNameSimilar(n1, n2) {
+    // Normalizar: Minúsculas y sin tildes
+    const normalize = (s) => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+    
+    const str1 = normalize(n1);
+    const str2 = normalize(n2);
+
+    if (str1 === str2) return true; // Directamente iguales
+
+    const words1 = str1.split(/\s+/);
+    const words2 = str2.split(/\s+/);
+    
+    // Si ambos tienen al menos nombre + apellido
+    if (words1.length >= 2 && words2.length >= 2) {
+        const last1 = words1[words1.length - 1]; // Apellido 1
+        const last2 = words2[words2.length - 1]; // Apellido 2
+        
+        // Si el apellido es exactamente igual
+        if (last1 === last2) {
+            const first1 = words1[0]; // Nombre 1
+            const first2 = words2[0]; // Nombre 2
+            
+            // Ver si un nombre contiene al otro (Ej: Gabriela arranca con Gabi)
+            // Solo si la coincidencia es de más de 3 letras para evitar falsos positivos
+            if (first1.length >= 3 && first2.length >= 3) {
+                if (first1.startsWith(first2) || first2.startsWith(first1)) {
+                    return true;
+                }
+            }
+        }
+    }
+    
+    return false;
 }
 
 // Initialize particles on load
