@@ -258,6 +258,14 @@ body {
     color: #666;
 }
 
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 25px;
+    width: 100%;
+}
+
 .rsvp-btn {
     margin-top: 20px;
     background: linear-gradient(135deg, #E5A9AC, #d4af37);
@@ -540,5 +548,12 @@ body {
     
     .time-box span {
         font-size: 1.2rem;
+    }
+
+    .decor-dress {
+        width: 100px;
+        left: calc(50% + 55px);
+        top: 220px; /* Bajarlo para que no se superponga con Delfina */
+        opacity: 0.5;
     }
 }
