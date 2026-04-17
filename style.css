@@ -150,7 +150,6 @@ body {
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     z-index: 20;
     mix-blend-mode: multiply; /* Helps blend white background of icon */
-    filter: brightness(1.05) contrast(1.05); /* Previene borde grisáceo */
 }
 
 .rabbit {
@@ -422,7 +421,6 @@ body {
     pointer-events: none;
     mix-blend-mode: multiply;
     animation: floatingDecor 6s ease-in-out infinite;
-    filter: brightness(1.05) contrast(1.05); /* Asegura que el fondo casi blanco se vuelva 100% blanco puro */
 }
 
 .decor-dress {
