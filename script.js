@@ -1,5 +1,5 @@
-// Set the date we're counting down to (May 9, 2026 13:30:00)
-const countDownDate = new Date("May 9, 2026 13:30:00").getTime();
+// Set the date we're counting down to (May 9, 2026 13:30:00 - Argentina Time)
+const countDownDate = new Date("2026-05-09T13:30:00-03:00").getTime();
 
 // Update the count down every 1 second
 const x = setInterval(function () {
@@ -75,10 +75,9 @@ function openMap() {
 const SUPABASE_URL = 'https://yaamlnxagnqshksjuvom.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_dSK5g5wre2liZuttLHNq5w_mPWMVy3G';
 
-let supabase;
-if (typeof supabase !== 'undefined') {
+if (window.supabase) {
     // Inicializar cliente
-    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     // Configurar listener del formulario
     document.getElementById('rsvp-form').addEventListener('submit', async (e) => {
@@ -97,7 +96,7 @@ if (typeof supabase !== 'undefined') {
         // Preparar el nombre para guardar (normalizado)
         // Guardamos el nombre as-is pero la base de datos se encargará de rechazar si es UNIQUE
         try {
-            const { data, error } = await supabase
+            const { data, error } = await supabaseClient
                 .from('invitados')
                 .insert([
                     { nombre_completo: inputName, estado: 'Confirmado' }
