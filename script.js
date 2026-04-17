@@ -172,9 +172,9 @@ function isNameSimilar(n1, n2) {
             const first1 = words1[0]; // Nombre 1
             const first2 = words2[0]; // Nombre 2
             
-            // Ver si un nombre contiene al otro (Ej: Gabriela arranca con Gabi)
-            // Solo si la coincidencia es de más de 3 letras para evitar falsos positivos
-            if (first1.length >= 3 && first2.length >= 3) {
+            // Ver si un nombre contiene al otro (Ej: Gabriela arranca con Gabi o Ga)
+            // Solo si la coincidencia es de más de 2 letras para cubrir casos como 'Ga'
+            if (first1.length >= 2 && first2.length >= 2) {
                 if (first1.startsWith(first2) || first2.startsWith(first1)) {
                     return true;
                 }
