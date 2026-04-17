@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Cumple de Delfina!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="magic-particles" id="particles"></div>
+    <div class="invitation-container">
+        <div class="glass-card">
+            <div class="header">
+                <h2>Festejo mi</h2>
+                <div class="age">1<span class="anity">añito</span></div>
+                <h1 class="name">Delfina</h1>
+            </div>
+            
+            <p class="subtitle">y quiero compartirlo con vos</p>
+
+            <div class="divider">
+                <svg width="200" height="20" viewBox="0 0 200 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="0" y1="10" x2="80" y2="10" stroke="#E5A9AC" stroke-width="2"/>
+                    <circle cx="100" cy="10" r="5" fill="#E5A9AC"/>
+                    <circle cx="88" cy="10" r="3" fill="#E5A9AC"/>
+                    <circle cx="112" cy="10" r="3" fill="#E5A9AC"/>
+                    <line x1="120" y1="10" x2="200" y2="10" stroke="#E5A9AC" stroke-width="2"/>
+                </svg>
+            </div>
+
+            <div class="details">
+                <div class="detail-item tooltip-container">
+                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    <span>09 de Mayo</span>
+                    <span class="tooltip">¡Agendalo!</span>
+                </div>
+                <div class="detail-item">
+                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span>De 13:30 hs a 16:00 hs</span>
+                </div>
+                <div class="detail-item location">
+                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <div>
+                        <strong class="place-name">Salón Casa Soñada</strong>
+                        <p class="address">Gdor. Félix Garzón 2054</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="countdown-container">
+                <h3>Faltan:</h3>
+                <div id="countdown" class="countdown">
+                    <div class="time-box"><span id="days">00</span><small>Días</small></div>
+                    <div class="time-box"><span id="hours">00</span><small>Hrs</small></div>
+                    <div class="time-box"><span id="minutes">00</span><small>Min</small></div>
+                    <div class="time-box"><span id="seconds">00</span><small>Seg</small></div>
+                </div>
+            </div>
+
+            <button class="rsvp-btn" onclick="openMap()">Ver ubicación</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

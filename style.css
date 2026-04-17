@@ -1,0 +1,314 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #f7dcdb; /* Soft pink */
+    --secondary-color: #aed9e0; /* Soft baby blue */
+    --accent-color: #d4af37; /* Subtle gold */
+    --text-dark: #4a4a4a;
+    --text-light: #ffffff;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fcf9f9;
+    background-image: url('background.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.magic-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.invitation-container {
+    padding: 20px;
+    width: 100%;
+    max-width: 500px;
+    z-index: 10;
+    perspective: 1000px;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 30px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 
+                inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 1s ease-out;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 
+                inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+}
+
+.header h2 {
+    font-size: 1.2rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.age {
+    font-size: 6rem;
+    font-weight: 600;
+    color: #E5A9AC;
+    line-height: 0.8;
+    margin: 10px 0;
+    position: relative;
+    display: inline-block;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+}
+
+.anity {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5rem;
+    position: absolute;
+    bottom: 5px;
+    right: -60px;
+    color: var(--accent-color);
+}
+
+.name {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4.5rem;
+    color: #E5A9AC;
+    margin: 15px 0 5px 0;
+    line-height: 1;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+}
+
+.subtitle {
+    font-size: 1rem;
+    font-weight: 300;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.divider {
+    margin: 20px 0;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+    text-align: left;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 12px 20px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.detail-item:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: scale(1.02);
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    color: var(--accent-color);
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.location {
+    align-items: flex-start;
+}
+
+.location .icon {
+    margin-top: 3px;
+}
+
+.place-name {
+    display: block;
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 2px;
+}
+
+.address {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.countdown-container {
+    margin-top: 35px;
+    padding-top: 20px;
+    border-top: 1px dashed rgba(229, 169, 172, 0.5);
+}
+
+.countdown-container h3 {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 15px;
+    color: #666;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.time-box {
+    background: linear-gradient(135deg, rgba(247, 220, 219, 0.6), rgba(174, 217, 224, 0.6));
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    padding: 10px 15px;
+    min-width: 65px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.time-box span {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #4a4a4a;
+}
+
+.time-box small {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 4px;
+    color: #666;
+}
+
+.rsvp-btn {
+    margin-top: 35px;
+    background: linear-gradient(135deg, #E5A9AC, #d4af37);
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(229, 169, 172, 0.4);
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.rsvp-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(229, 169, 172, 0.6);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.particle {
+    position: absolute;
+    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+    animation: float var(--duration) ease-in-out infinite;
+    opacity: var(--opacity);
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-20px) translateX(10px); }
+}
+
+/* Tooltip */
+.tooltip-container {
+    position: relative;
+    cursor: help;
+}
+
+.tooltip {
+    visibility: hidden;
+    background-color: var(--accent-color);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -50px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.8rem;
+    width: 100px;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--accent-color) transparent transparent transparent;
+}
+
+.tooltip-container:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+@media (max-width: 480px) {
+    .glass-card {
+        padding: 30px 20px;
+    }
+    
+    .name {
+        font-size: 3.5rem;
+    }
+    
+    .age {
+        font-size: 5rem;
+    }
+    
+    .time-box {
+        min-width: 55px;
+        padding: 8px 10px;
+    }
+    
+    .time-box span {
+        font-size: 1.2rem;
+    }
+}
