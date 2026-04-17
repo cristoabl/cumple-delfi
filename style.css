@@ -47,6 +47,7 @@ body {
 }
 
 .glass-card {
+    position: relative;
     background: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -382,7 +383,7 @@ body {
 
 /* Side Decorations */
 .side-decoration {
-    position: fixed;
+    position: absolute; /* Anclado a la glass-card */
     z-index: 5;
     pointer-events: none;
     mix-blend-mode: multiply;
@@ -391,28 +392,23 @@ body {
 }
 
 .decor-dress {
-    left: calc(50% + 280px); /* Anclado justo al lado de la tarjeta central */
-    top: 50%;
-    transform: translateY(-50%);
-    width: 250px;
-    opacity: 0.9;
+    right: -60px; /* Sobresale hacia la derecha de la tarjeta */
+    top: 20px;
+    width: 200px;
+    opacity: 0.85; /* Un poquito más transparente para no molestar mucho si toca el texto */
 }
 
 @keyframes floatingDecor {
-    0%, 100% { transform: translateY(-50%) translateX(0) rotate(0deg); }
-    50% { transform: translateY(calc(-50% - 15px)) translateX(-5px) rotate(2deg); }
-}
-
-@media (max-width: 1000px) {
-    .decor-dress {
-        width: 180px;
-        right: 2%;
-    }
+    0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+    50% { transform: translateY(-15px) translateX(-5px) rotate(2deg); }
 }
 
 @media (max-width: 768px) {
-    .side-decoration {
-        display: none; /* Hide on mobile so it doesn't overlap the card */
+    .decor-dress {
+        width: 140px;
+        right: -30px;
+        top: 10px;
+        opacity: 0.6; /* Más transparente en celulares para priorizar lectura */
     }
 }
 
