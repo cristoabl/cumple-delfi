@@ -46,6 +46,60 @@ if (musicToggle && bgMusic) {
     });
 }
 
+// Lógica mágica de posicionamiento absoluto para los animalitos (Superando el Blur de iOS/Chrome)
+const items = [
+    document.getElementById('item-date'),
+    document.getElementById('item-time'),
+    document.getElementById('item-location')
+];
+const chars = [
+    document.getElementById('char-rabbit'),
+    document.getElementById('char-cat'),
+    document.getElementById('char-hatter')
+];
+
+// Ajustes manuales calculados en base a cómo se veían antes.
+const offsets = [
+    { top: -20, getLeft: (rect) => rect.width - 30 }, // Rabbit (a la derecha)
+    { top: -45, getLeft: (rect) => rect.width - 50 }, // Cat (arriba a la derecha)
+    { top: -20, getLeft: (rect) => -30 }              // Hatter (a la izquierda)
+];
+
+items.forEach((item, index) => {
+    if(!item || !chars[index]) return;
+    const char = chars[index];
+    
+    const showChar = () => {
+        const rect = item.getBoundingClientRect();
+        // Calculamos la posición real contra el documento considerando scroll
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+        const leftPos = rect.left + scrollLeft + offsets[index].getLeft(rect);
+        const topPos = rect.top + scrollTop + offsets[index].top;
+
+        char.style.left = leftPos + 'px';
+        char.style.top = topPos + 'px';
+        char.classList.add('visible');
+    };
+
+    const hideChar = () => {
+        char.classList.remove('visible');
+    };
+
+    // Eventos de Mouse para PC
+    item.addEventListener('mouseenter', showChar);
+    item.addEventListener('mouseleave', hideChar);
+    
+    // Eventos Táctiles para celular
+    item.addEventListener('touchstart', (e) => {
+        showChar();
+    }, {passive: true});
+    item.addEventListener('touchend', () => {
+        setTimeout(hideChar, 2000); // Quitar a los 2 segundos para dar tiempo
+    }, {passive: true});
+});
+
 // Set the date we're counting down to (May 9, 2026 13:30:00 - Argentina Time)
 const countDownDate = new Date("2026-05-09T13:30:00-03:00").getTime();
 

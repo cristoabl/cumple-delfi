@@ -30,6 +30,11 @@
     <!-- Floating side decoration OVER the card, but rendered at root to preserve mix-blend-mode -->
     <img src="dress.png" class="side-decoration decor-dress" alt="Vestido de Alicia">
 
+    <!-- Hover Characters globally rendered outside any blur context -->
+    <img src="rabbit.png" class="hover-character rabbit" id="char-rabbit">
+    <img src="cat.png" class="hover-character cat" id="char-cat">
+    <img src="hatter.png" class="hover-character hatter" id="char-hatter">
+
     <div class="invitation-container">
         <div class="glass-card">
             <div class="header">
@@ -51,24 +56,22 @@
             </div>
 
             <div class="details">
-                <div class="detail-item tooltip-container">
-                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                <div class="detail-item" id="item-date">
+                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                     <span>09 de Mayo</span>
-                    <span class="tooltip">¡Agendalo!</span>
-                    <img src="rabbit.png" alt="Conejo" class="hover-character rabbit">
                 </div>
-                <div class="detail-item">
-                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                
+                <div class="detail-item" id="item-time">
+                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     <span>De 13:30 hs a 16:00 hs</span>
-                    <img src="cat.png" alt="Gato" class="hover-character cat">
                 </div>
-                <div class="detail-item location">
-                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                
+                <div class="detail-item location" id="item-location">
+                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                     <div>
-                        <strong class="place-name">Salón Casa Soñada</strong>
-                        <p class="address">Gdor. Félix Garzón 2054</p>
+                        <span class="place-name">Salón Casa Soñada</span>
+                        <span class="address">Gdor. Félix Garzón 2054</span>
                     </div>
-                    <img src="hatter.png" alt="Sombrerero" class="hover-character hatter">
                 </div>
             </div>
 

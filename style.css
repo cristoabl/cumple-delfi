@@ -140,46 +140,43 @@ body {
     transform: scale(1.02);
 }
 
-/* Hover Characters Animation */
+/* Hover Characters Animation (Now managed by JS and placed at root level) */
 .hover-character {
     position: absolute;
     height: 80px;
     width: auto;
-    /* Opacity removido porque causa un "GPU layer flattening" en iOS que rompe el mix-blend-mode */
     pointer-events: none;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    z-index: 20;
-    mix-blend-mode: multiply; /* Funciona en iOS si no interactúa con opacity */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+    z-index: 50; /* Mayor que la tarjeta de cristal para sobrepasar el efecto de blur */
+    mix-blend-mode: multiply; /* Ya funciona perfecto en iOS porque no está dentro del backdrop-filter de la tarjeta */
+    opacity: 0;
+}
+
+.hover-character.visible {
+    opacity: 1; /* Ya no genera bug de flattening en iOS por estar al root (como tu vestido) */
 }
 
 .rabbit {
-    right: -20px;
-    top: -20px;
-    /* Ocultamos haciéndolo pequeñísimo en vez de transparente */
-    transform: translateX(20px) translateY(10px) rotate(15deg) scale(0.001);
+    transform: translateX(20px) translateY(10px) rotate(15deg) scale(0.5);
 }
-.detail-item:hover .rabbit {
-    transform: translateX(0) translateY(0) rotate(-5deg) scale(1);
+.rabbit.visible {
+    transform: translateX(0) translateY(0) rotate(-5deg) scale(1.1);
 }
 
 .cat {
-    right: -10px;
-    top: -40px;
-    transform: translateY(20px) scale(0.001);
+    transform: translateY(20px) scale(0.4);
     height: 90px;
 }
-.detail-item:hover .cat {
-    transform: translateY(0) scale(1);
+.cat.visible {
+    transform: translateY(0) scale(1.1);
 }
 
 .hatter {
-    left: -30px;
-    top: -30px;
-    transform: translateY(15px) rotate(-15deg) scale(0.001);
+    transform: translateY(15px) rotate(-15deg) scale(0.5);
     height: 70px;
 }
-.detail-item:hover .hatter {
-    transform: translateY(0) rotate(5deg) scale(1);
+.hatter.visible {
+    transform: translateY(0) rotate(5deg) scale(1.1);
 }
 
 .icon {
