@@ -145,43 +145,41 @@ body {
     position: absolute;
     height: 80px;
     width: auto;
-    opacity: 0;
+    /* Opacity removido porque causa un "GPU layer flattening" en iOS que rompe el mix-blend-mode */
     pointer-events: none;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     z-index: 20;
-    mix-blend-mode: darken; /* Darken suele eludir el bug de Safari mejor que multiply adentro de cajas con blur */
+    mix-blend-mode: multiply; /* Funciona en iOS si no interactúa con opacity */
 }
 
 .rabbit {
     right: -20px;
     top: -20px;
-    transform: translateX(20px) translateY(10px) rotate(15deg);
+    /* Ocultamos haciéndolo pequeñísimo en vez de transparente */
+    transform: translateX(20px) translateY(10px) rotate(15deg) scale(0.001);
 }
 .detail-item:hover .rabbit {
-    opacity: 1;
-    transform: translateX(0) translateY(0) rotate(-5deg);
+    transform: translateX(0) translateY(0) rotate(-5deg) scale(1);
 }
 
 .cat {
     right: -10px;
     top: -40px;
-    transform: translateY(20px) scale(0.6);
+    transform: translateY(20px) scale(0.001);
     height: 90px;
 }
 .detail-item:hover .cat {
-    opacity: 1;
     transform: translateY(0) scale(1);
 }
 
 .hatter {
     left: -30px;
     top: -30px;
-    transform: translateY(15px) rotate(-15deg);
+    transform: translateY(15px) rotate(-15deg) scale(0.001);
     height: 70px;
 }
 .detail-item:hover .hatter {
-    opacity: 1;
-    transform: translateY(0) rotate(5deg);
+    transform: translateY(0) rotate(5deg) scale(1);
 }
 
 .icon {
