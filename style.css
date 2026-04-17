@@ -383,8 +383,8 @@ body {
 
 /* Side Decorations */
 .side-decoration {
-    position: absolute; /* Anclado a la glass-card */
-    z-index: 5;
+    position: absolute; /* Anclado al document body */
+    z-index: 20; /* Mayor que el contenedor para superponerse */
     pointer-events: none;
     mix-blend-mode: multiply;
     animation: floatingDecor 6s ease-in-out infinite;
@@ -392,10 +392,10 @@ body {
 }
 
 .decor-dress {
-    right: -60px; /* Sobresale hacia la derecha de la tarjeta */
-    top: 20px;
+    left: calc(50% + 110px); /* Centro de pantalla + 110px a la derecha, para superponer sobre el borde de la tarjeta (que llega a +250px) */
+    top: 180px; /* Altura relativa desde el top de la página */
     width: 200px;
-    opacity: 0.85; /* Un poquito más transparente para no molestar mucho si toca el texto */
+    opacity: 0.85; 
 }
 
 @keyframes floatingDecor {
@@ -405,10 +405,10 @@ body {
 
 @media (max-width: 768px) {
     .decor-dress {
-        width: 140px;
-        right: -30px;
-        top: 10px;
-        opacity: 0.6; /* Más transparente en celulares para priorizar lectura */
+        width: 130px;
+        left: calc(50% + 40px); /* Más encimado al centro en celular */
+        top: 120px;
+        opacity: 0.65; 
     }
 }
 
