@@ -1,3 +1,30 @@
+// Setup background music toggle
+const musicToggle = document.getElementById('musicToggle');
+const bgMusic = document.getElementById('bgMusic');
+
+if (musicToggle && bgMusic) {
+    // Optionally try to auto-play but mostly browsers block this, so the user has to click
+    musicToggle.addEventListener('click', () => {
+        if (bgMusic.paused) {
+            bgMusic.play();
+            musicToggle.classList.add('playing');
+            localStorage.setItem('music_playing', 'true');
+        } else {
+            bgMusic.pause();
+            musicToggle.classList.remove('playing');
+            localStorage.setItem('music_playing', 'false');
+        }
+    });
+
+    // Start playing if it was playing previously or if user interacts
+    document.body.addEventListener('click', () => {
+        if (localStorage.getItem('music_playing') === 'true' && bgMusic.paused) {
+            bgMusic.play();
+            musicToggle.classList.add('playing');
+        }
+    }, { once: true });
+}
+
 // Set the date we're counting down to (May 9, 2026 13:30:00 - Argentina Time)
 const countDownDate = new Date("2026-05-09T13:30:00-03:00").getTime();
 

@@ -19,6 +19,14 @@
 <body>
     <div class="magic-particles" id="particles"></div>
     
+    <!-- Audio element & Toggle -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+    <button id="musicToggle" class="music-btn" title="Reproducir música plana">
+        <span class="music-icon">🎵</span>
+    </button>
+
     <!-- Floating side decoration OVER the card, but rendered at root to preserve mix-blend-mode -->
     <img src="dress.png" class="side-decoration decor-dress" alt="Vestido de Alicia">
 
@@ -64,17 +72,20 @@
                 </div>
             </div>
 
-            <div class="countdown-container">
-                <h3>Faltan:</h3>
-                <div id="countdown" class="countdown">
-                    <div class="time-box"><span id="days">00</span><small>Días</small></div>
-                    <div class="time-box"><span id="hours">00</span><small>Hrs</small></div>
-                    <div class="time-box"><span id="minutes">00</span><small>Min</small></div>
-                    <div class="time-box"><span id="seconds">00</span><small>Seg</small></div>
+            <div class="countdown">
+                <p>Faltan:</p>
+                <div id="clock" class="clock">
+                    <div class="time-box"><span id="days">00</span><p>DÍAS</p></div>
+                    <div class="time-box"><span id="hours">00</span><p>HRS</p></div>
+                    <div class="time-box"><span id="minutes">00</span><p>MIN</p></div>
+                    <div class="time-box"><span id="seconds">00</span><p>SEG</p></div>
+                </div>
+                
+                <div class="action-buttons">
+                    <a href="https://maps.app.goo.gl/tu-enlace-aqui" target="_blank" class="map-btn">Ver ubicación</a>
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&dates=20260509T163000Z/20260509T190000Z&text=1er+A%C3%B1ito+de+Delfina&location=Gdor.+F%C3%A9lix+Garz%C3%B3n+2054&details=¡Los+esperamos+para+festejar+magicamente!" target="_blank" class="calendar-btn">📅 Agendar</a>
                 </div>
             </div>
-
-            <button class="rsvp-btn btn-secondary" onclick="openMap()">Ver ubicación</button>
 
             <!-- RSVP Section -->
             <div class="rsvp-section" id="rsvp-section">
